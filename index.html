@@ -1,54 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/normalize.css"/>
   <link rel="stylesheet" href="css/styles.css">
   <title>Restaurant Reviews</title>
   <script>
-      if('serviceWorker' in navigator) {
-          navigator.serviceWorker
-              .register('/sw.js')
-              .then(function() { console.log("Service Worker Registered"); });
-      }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+          .register('/sw.js')
+          .then(function () {
+            console.log("Service Worker Registered");
+          });
+    }
   </script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 </head>
 
 <body>
-  <header>
-    <nav>
-      <h1><a href="/">Restaurant Reviews</a></h1>
-    </nav>
-  </header>
+<!--<script>-->
+<!--(function(w, d){-->
+<!--var b = d.getElementsByTagName('body')[0];-->
+<!--var s = d.createElement("script"); s.async = true;-->
+<!--var v = !("IntersectionObserver" in w) ? "8.7.1" : "10.5.2";-->
+<!--s.src = "https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/" + v + "/lazyload.min.js";-->
+<!--w.lazyLoadOptions = {}; // Your options here. See "recipes" for more information about async.-->
+<!--b.appendChild(s);-->
+<!--}(window, document));-->
+<!--</script>-->
+<header>
+  <nav>
+    <h1><a href="/">Restaurant Reviews</a></h1>
+  </nav>
+</header>
 
-  <main id="maincontent">
-    <section id="map-container">
-      <div id="map"></div>
-    </section>
-    <section>
-      <div class="filter-options">
-        <h2>Filter Results</h2>
-        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
-          <option value="all">All Neighborhoods</option>
-        </select>
-        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
-          <option value="all">All Cuisines</option>
-        </select>
-      </div>
-      <ul id="restaurants-list" class="restaurants-list"></ul>
-    </section>
-  </main>
+<main id="maincontent">
+  <section id="map-container">
+    <div id="map" role="application" aria-label="Map with restaurants"></div>
+  </section>
+  <section>
+    <div class="filter-options">
+      <h2>Filter Results</h2>
+      <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()"
+              aria-label="Select neighborhoods">
+        <option value="all">All Neighborhoods</option>
+      </select>
+      <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()" aria-label="Select cuisiness">
+        <option value="all">All Cuisines</option>
+      </select>
+    </div>
+    <ul id="restaurants-list" class="restaurants-list"></ul>
+  </section>
+</main>
 
-  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
-  <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuFcMO0mo6L1MYe3wSUd6OXFCGfvu_aJk&libraries=places&callback=initMap"></script>
+<script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
+<script type="application/javascript" charset="utf-8" src="js/main.js"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuFcMO0mo6L1MYe3wSUd6OXFCGfvu_aJk&libraries=places&callback=initMap"></script>
 
 
-  <footer id="footer">
-    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
-  </footer>
-
+<footer id="footer">
+  Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+</footer>
+<script src="js/lazyload.js" async></script>
 </body>
 
 </html>

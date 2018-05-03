@@ -14,6 +14,9 @@ window.initMap = () => {
         center: restaurant.latlng,
         scrollwheel: false
       });
+      tileListener = google.maps.event.addListenerOnce(self.map, 'tilesloaded', () => {
+        $('#map iframe').attr('title','google maps');
+      });
       fillBreadcrumb();
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
     }
@@ -58,7 +61,9 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   const imageUrl1X =  DBHelper.imageUrlForRestaurant(restaurant);
-  image.srcset = `${imageUrl1X.replace('-400w', '-800w')} 2x, ${imageUrl1X}`;
+  image.setAttribute('data-srcset', `${imageUrl1X.replace('-400w', '-800w')} 2x, ${imageUrl1X}`);
+  image.alt = '';
+  if(ll) ll.update();
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;

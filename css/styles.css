@@ -28,7 +28,7 @@ a {
 
 a:hover, a:focus {
     color: #3397db;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 a img {
@@ -52,13 +52,14 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 
 #footer {
     background-color: #444;
-    color: #aaa;
+    color: #b1b1b1;
     font-size: 8pt;
     letter-spacing: 1px;
     padding: 15px 5px;
     text-align: center;
     text-transform: uppercase;
 }
+
 
 /* ====================== Navigation ====================== */
 nav {
@@ -104,7 +105,7 @@ nav h1 a {
 
 /* Add a color to all links inside the list */
 #breadcrumb li a {
-    color: #0275d8;
+    color: #005096;
     text-decoration: none;
 }
 
@@ -124,7 +125,7 @@ nav h1 a {
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
     width: 100%;
-    background-color: #3397DB;
+    background-color: rgb(0, 94, 143);
     align-items: center;
     text-align: center;
 }
@@ -222,7 +223,7 @@ nav h1 a {
 }
 
 .restaurants-list li h1 {
-    color: #f18200;
+    color: #b56000;
     font-family: Arial, sans-serif;
     font-size: 14pt;
     font-weight: 200;
@@ -238,9 +239,9 @@ nav h1 a {
 }
 
 .restaurants-list li a {
-    background-color: orange;
-    border-bottom: 3px solid #eee;
-    color: #fff;
+    color: rgb(255, 255, 255);
+    background: rgb(0, 79, 0);
+    opacity: 1;
     display: inline-block;
     font-size: 10pt;
     margin: 15px 0 0;
@@ -250,6 +251,11 @@ nav h1 a {
     text-transform: uppercase;
 }
 
+.restaurants-list li a:focus {
+    box-shadow: 3px 3px rgb(232, 5, 5);
+    text-decoration: underline;
+    outline: none;
+}
 /* ====================== Restaurant Details ====================== */
 header {
     position: fixed;
@@ -292,7 +298,7 @@ header {
 }
 
 #restaurant-name {
-    color: #f18200;
+    color: #804200;
     font-family: Arial, sans-serif;
     font-size: 16pt;
     font-weight: 200;
@@ -347,7 +353,7 @@ header {
 }
 
 #reviews-container h2 {
-    color: #f58500;
+    color: #7f4200;
     font-size: 16pt;
     font-weight: 300;
     letter-spacing: -1px;
@@ -471,3 +477,16 @@ header {
     padding-left: 40px;
 }
 
+/* ================== Lazy load =================== */
+img {
+    display: block;
+}
+#restaurants-list img:not([srcset]) {
+    visibility: hidden;
+}
+/* Fixes Firefox anomaly during image load */
+@-moz-document url-prefix() {
+    img:-moz-loading {
+        visibility: hidden;
+    }
+}

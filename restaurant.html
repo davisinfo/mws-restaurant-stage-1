@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,6 +15,7 @@
               .then(function() { console.log("Service Worker Registered"); });
       }
   </script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 </head>
 
 <body class="inside">
@@ -37,7 +38,7 @@
   <main id="maincontent">
     <!-- Beginning map -->
     <section id="map-container">
-      <div id="map"></div>
+      <div id="map" role="application" aria-label="Restaurant location"></div>
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->
@@ -70,6 +71,8 @@
   <script type="text/javascript" src="js/restaurant_info.js"></script>
   <!-- Google Maps -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuFcMO0mo6L1MYe3wSUd6OXFCGfvu_aJk&libraries=places&callback=initMap"></script>
+  <!-- Lazy images load -->
+  <script src="js/lazyload.js" async></script>
   <!-- End scripts -->
 
 </body>
