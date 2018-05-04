@@ -71,12 +71,12 @@ nav {
 
 nav h1 {
     margin: auto;
-    padding-top: 10px;
+    padding-top: 0.1em;
 }
 
 nav h1 a {
     color: #fff;
-    font-size: 0.9em;
+    font-size: 0.7em;
     font-weight: 200;
     letter-spacing: 10px;
     text-transform: uppercase;

@@ -59,10 +59,10 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   address.innerHTML = restaurant.address;
 
   const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
+  image.className = 'restaurant-img';
   const imageUrl1X =  DBHelper.imageUrlForRestaurant(restaurant);
   image.setAttribute('data-srcset', `${imageUrl1X.replace('-400w', '-800w')} 2x, ${imageUrl1X}`);
-  image.alt = '';
+  image.alt = `Photo from ${name}`;
   if(ll) ll.update();
 
   const cuisine = document.getElementById('restaurant-cuisine');

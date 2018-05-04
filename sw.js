@@ -1,4 +1,4 @@
-var staticCacheName = 'mws-restaurant-static-v3';
+var staticCacheName = 'mws-restaurant-static-v4';
 var contentImgsCache = 'mws-restaurant-images';
 var allCaches = [
     staticCacheName,
