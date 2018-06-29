@@ -1,0 +1,25 @@
+{
+  "short_name": "Restaurants",
+  "name": "MWS Restaurants Info",
+  "start_url": "/index.html",
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "dist/icons/fireworks-icon128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "dist/icons/fireworks-icon192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "dist/icons/fireworks-icon512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#3367D6"
+}

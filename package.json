@@ -6,16 +6,30 @@
     "url": "https://github.com/udacity/responsive-images.git"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "del": "^3.0.0",
     "grunt": "~0.4.5",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-copy": "~0.8.0",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-nodeunit": "~0.4.1",
     "grunt-contrib-uglify": "~0.5.0",
-    "grunt-contrib-clean": "~0.6.0",
     "grunt-mkdir": "~0.1.2",
-    "grunt-contrib-copy": "~0.8.0"
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify": "^3.0.2",
+    "gulp-rev": "^8.1.1",
+    "gulp-sourcemaps": "^2.6.4"
   },
   "dependencies": {
+    "browserify": "^16.2.2",
     "grunt-responsive-images": "^0.1.6",
-    "imager.js": "^0.5.1"
+    "idb": "^2.1.2",
+    "imager.js": "^0.5.1",
+    "indexeddb-promised": "^1.3.1",
+    "vinyl-source-stream": "^2.0.0"
   }
 }
