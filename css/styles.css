@@ -490,3 +490,112 @@ img {
         visibility: hidden;
     }
 }
+
+/* ================== Modal dialog ======================= */
+/* The Modal (background) */
+.dialog {
+    z-index: 1003;
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 100vh;
+    min-width: 50vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 2px solid #004f00;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 10px;
+}
+
+.modal-content label {
+    width: 25%;
+    max-width: 100px;
+    display: block;
+    float: left;
+    text-align: left;
+    font-weight: bold;
+}
+
+.modal-content input, .modal-content textarea {
+    width: 75%;
+    display: block;
+}
+
+/* The Close Button */
+.dialog-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.dialog-close:hover,
+.dialog-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#review-btn, #create-review-btn {
+    color: rgb(255, 255, 255);
+    background: rgb(0, 79, 0);
+    opacity: 1;
+    display: inline-block;
+    font-size: 10pt;
+    margin: 15px 0;
+    padding: 8px 30px 10px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#create-review {
+    line-height: 2;
+}
+
+
+.dialog-overlay {
+    z-index: 1002;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+.dialog-overlay[aria-hidden="true"],
+.dialog[aria-hidden="true"] {
+    display: none;
+}
+
+.dialog-overlay:not([aria-hidden="true"]),
+.dialog:not([aria-hidden="true"]) {
+    display: block;
+}
+
+.sr-only {
+    opacity: 0;
+    position: absolute;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+#review-save-error {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.hidden {
+    display: none;
+}

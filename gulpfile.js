@@ -21,7 +21,7 @@ gulp.task('clean-css', function () {
 });
 
 gulp.task('pack-js', ['clean-js'], function () {
-    gulp.src(['js/vendor/dexie.js', 'js/lazyload.js', 'js/dbhelper.js', 'js/restaurant_info.js'])
+    gulp.src(['js/vendor/dexie.js', 'js/dbhelper.js', 'js/dialog.js', 'js/restaurant_info.js', 'js/lazyload.js'])
         .pipe(sourcemaps.init())
         // .pipe(babel({
         //     presets: ['env']
@@ -41,7 +41,7 @@ gulp.task('pack-js', ['clean-js'], function () {
         }))
         .pipe(gulp.dest(''));
 
-    return gulp.src(['js/vendor/dexie.js', 'js/lazyload.js', 'js/dbhelper.js', 'js/main.js'])
+    return gulp.src(['js/vendor/dexie.js', 'js/dbhelper.js', 'js/main.js', 'js/lazyload.js'])
         .pipe(sourcemaps.init())
         // .pipe(babel({
         //     presets: ['env']

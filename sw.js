@@ -1,4 +1,4 @@
-var staticCacheName = 'mws-restaurant-static-v4';
+var staticCacheName = 'mws-restaurant-static-v5';
 var contentImgsCache = 'mws-restaurant-images';
 var allCaches = [
     staticCacheName,
@@ -15,9 +15,11 @@ self.addEventListener('install', function (event) {
                 'js/dbhelper.js',
                 'js/main.js',
                 'js/restaurant_info.js',
+                'dist/js/bundle-info-e7aebc8d07.js',
+                'dist/js/bundle-main-7837711d52.js',
+                'dist/css/stylesheet-55e7dfb994.css',
                 'css/styles.css',
                 'css/normalize.css',
-                'data/restaurants.json'
             ]);
         })
     );
@@ -48,18 +50,25 @@ self.addEventListener('fetch', function (event) {
         }
     }
 
-    let storageUrl = event.request.url.replace(/\?.*$/, '');
-    event.respondWith(
-        caches.open(staticCacheName).then(function (cache) {
-            return caches.match(storageUrl).then(function (response) {
-                if (response) return response;
+    if(event.request.method=='GET')
+    {
+        let storageUrl = event.request.url.replace(/\?.*$/, '');
+        event.respondWith(
+            caches.open(staticCacheName).then(function (cache) {
+                return caches.match(storageUrl).then(function (response) {
+                    if (response) return response;
 
-                return fetch(event.request).then(function (networkResponse) {
-                    cache.put(storageUrl, networkResponse.clone());
-                    return networkResponse;
+                    return fetch(event.request).then(function (networkResponse) {
+                        cache.put(storageUrl, networkResponse.clone());
+                        return networkResponse;
+                    });
                 });
-            });
-        }));
+            }));
+    } else {
+        event.respondWith(fetch(event.request));
+        return;
+    }
+
 });
 
 function servePhoto(request) {
