@@ -2,25 +2,47 @@ let restaurant;
 let map;
 
 /**
- * Initialize Google map, called from HTML.
+ * Wait for document to become ready before loading data
+ * @type {Promise<any>}
  */
-window.initMap = () => {
+HTMLDocument.prototype.ready = new Promise(function (resolve) {
+    if (document.readyState != "loading")
+        return resolve();
+    else
+        document.addEventListener("DOMContentLoaded", function () {
+            return resolve();
+        });
+});
+
+/**
+ * Fetch restaurant as soon as the page is loaded.
+ */
+document.ready.then((event) => {
     fetchRestaurantFromURL((error, restaurant) => {
         if (error) { // Got an error!
             console.error(error);
         } else {
-            self.map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 16,
-                center: restaurant.latlng,
-                scrollwheel: false
-            });
-            tileListener = google.maps.event.addListenerOnce(self.map, 'tilesloaded', () => {
-                $('#map iframe').attr('title', 'google maps');
-            });
             fillBreadcrumb();
-            DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
+            displayDataOnMap();
         }
     });
+});
+
+displayDataOnMap = () => {
+    if(googleMapInitialized && self.restaurant) {
+        self.map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: self.restaurant.latlng,
+            scrollwheel: false
+        });
+        tileListener = google.maps.event.addListenerOnce(self.map, 'tilesloaded', () => {
+            document.querySelector('#map iframe').setAttribute('title', 'google maps');
+        });
+        DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
+    } else {
+        requestAnimationFrame(displayDataOnMap);
+    }
+
 }
 
 /**
@@ -37,11 +59,11 @@ fetchRestaurantFromURL = (callback) => {
         callback(error, null);
     } else {
         DBHelper.fetchRestaurantById(id, (error, restaurant) => {
-            self.restaurant = restaurant;
             if (!restaurant) {
                 console.error(error);
                 return;
             }
+            self.restaurant = restaurant;
             fillRestaurantHTML();
             callback(null, restaurant)
         });

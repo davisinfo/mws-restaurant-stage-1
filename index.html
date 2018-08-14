@@ -17,7 +17,6 @@
           });
     }
   </script>
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 </head>
 
 <body>
@@ -46,10 +45,31 @@
   </section>
 </main>
 
+<script type="application/javascript">
+    let googleMapInitialized = false;
+    /**
+     * Initialize Google map, called from HTML.
+     */
+    window.initMap = () => {
+        let loc = {
+            lat: 40.722216,
+            lng: -73.987501
+        };
+        self.map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: loc,
+            scrollwheel: false
+        });
+        tileListener = google.maps.event.addListenerOnce(self.map, 'tilesloaded', () => {
+            document.querySelector('#map iframe').setAttribute('title', 'google maps');
+        });
+        googleMapInitialized = true;
+    }
+</script>
 <!-- Main javascript file -->
-<script async defer type="application/javascript" charset="utf-8" src="dist/js/bundle-main-7837711d52.js"></script>
+<script async type="application/javascript" charset="utf-8" src="dist/js/bundle-main-97d5b5c2fd.js"></script>
 <!-- Google Maps -->
-<script async defer
+<script async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuFcMO0mo6L1MYe3wSUd6OXFCGfvu_aJk&libraries=places&callback=initMap"></script>
 
 

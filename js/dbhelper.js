@@ -129,7 +129,7 @@ class DBHelper {
     /**
      * Fetch all restaurants.
      */
-    static fetchRestaurants(callback) {
+    static  fetchRestaurants(callback) {
         let alreadyPopulated = false;
         dbHandler.on('ready', function () {
             // on('ready') event will fire when database is open but
@@ -157,7 +157,7 @@ class DBHelper {
         dbHandler.restaurants.toArray().then(function (array) {
             let restaurants = array;
             callback(null, restaurants);
-        }).catch(function () {
+        }).catch(function (e) {
             let error = (`Request failed.`);
             callback(error, null);
         }).then(function () {

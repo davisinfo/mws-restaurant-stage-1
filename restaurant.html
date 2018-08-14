@@ -15,7 +15,6 @@
               .then(function() { console.log("Service Worker Registered"); });
       }
   </script>
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 </head>
 
 <body class="inside">
@@ -88,10 +87,19 @@
   </footer>
   <!-- End footer -->
   <div class="dialog-overlay" tabindex="-1"></div>
+  <script type="application/javascript">
+      let googleMapInitialized = false;
+      /**
+       * Initialize Google map, called from HTML.
+       */
+      window.initMap = () => {
+          googleMapInitialized = true;
+      }
+  </script>
   <!-- Main javascript file -->
-  <script async defer type="application/javascript" charset="utf-8" src="dist/js/bundle-info-e7aebc8d07.js"></script>
+  <script async type="application/javascript" charset="utf-8" src="dist/js/bundle-info-a3d26d2fc2.js"></script>
   <!-- Google Maps -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuFcMO0mo6L1MYe3wSUd6OXFCGfvu_aJk&libraries=places&callback=initMap"></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuFcMO0mo6L1MYe3wSUd6OXFCGfvu_aJk&libraries=places&callback=initMap"></script>
   <script>
   </script>
 </body>

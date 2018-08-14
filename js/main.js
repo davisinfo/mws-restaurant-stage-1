@@ -5,11 +5,25 @@ var map
 var markers = []
 
 /**
+ * Load restaurants when document is ready
+ * @type {Promise<any>}
+ */
+HTMLDocument.prototype.ready = new Promise(function (resolve) {
+  if (document.readyState != "loading")
+    return resolve();
+  else
+    document.addEventListener("DOMContentLoaded", function () {
+      return resolve();
+    });
+});
+
+/**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
-document.addEventListener('DOMContentLoaded', (event) => {
+document.ready.then((event) => {
   fetchNeighborhoods();
   fetchCuisines();
+  updateRestaurants();
 });
 
 /**
@@ -65,26 +79,6 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
     option.value = cuisine;
     select.append(option);
   });
-}
-
-/**
- * Initialize Google map, called from HTML.
- */
-window.initMap = () => {
-  let loc = {
-    lat: 40.722216,
-    lng: -73.987501
-  };
-  self.map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: loc,
-    scrollwheel: false
-  });
-  tileListener = google.maps.event.addListenerOnce(self.map, 'tilesloaded', () => {
-      $('#map iframe').attr('title','google maps');
-  });
-
-  updateRestaurants();
 }
 
 /**
@@ -175,12 +169,16 @@ createRestaurantHTML = (restaurant) => {
  * Add markers for current restaurants to the map.
  */
 addMarkersToMap = (restaurants = self.restaurants) => {
-  restaurants.forEach(restaurant => {
-    // Add marker to the map
-    const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
-    google.maps.event.addListener(marker, 'click', () => {
-      window.location.href = marker.url
-    });
-    self.markers.push(marker);
-  });
+  if(googleMapInitialized) {
+      restaurants.forEach(restaurant => {
+          // Add marker to the map
+          const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
+          google.maps.event.addListener(marker, 'click', () => {
+              window.location.href = marker.url
+          });
+          self.markers.push(marker);
+      });
+  } else {
+    requestAnimationFrame(addMarkersToMap);
+  }
 }
